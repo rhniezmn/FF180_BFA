@@ -1,6 +1,6 @@
 /* --- Basic state --- */
 const state = {
-  currentWeek: 1, // change to unlock week 2
+  currentWeek: 2, // change to unlock week 2
   player: { name: '', house: '' },
   games: [], // will contain 10 games per week
   activeGame: null,
@@ -1375,4 +1375,5 @@ function readableTextColor(hex) {
   } catch (e) { /* noop */ }
 
   updatePlayerScoreDisplay();
+
 })();
