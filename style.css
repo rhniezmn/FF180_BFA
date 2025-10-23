@@ -1,0 +1,671 @@
+/* Mobile-first responsive layout */
+:root{
+  --primary: #2D6CB5;     /* Blue */
+  --teal:    #00AE8E;     /* Dark Teal */
+  --pink:    #DE5C8E;     /* Pink */
+  --accent:  var(--primary);
+  --accent-2: var(--teal);
+  --accent-3: var(--pink);
+  --muted: #6b7280;
+  --bg: #0f172a;
+  --card: #0b1220;
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{
+  box-sizing: border-box;
+  font-family: Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body{
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(180deg,#071023 0%, #061426 100%);
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container{
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.02);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(8,12,26,0.6);
+  border-color: rgba(45,108,181,0.12);
+}
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1{
+  font-size: 20px;
+  margin: 0;
+}
+
+p.lead{
+  color: var(--muted);
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+button{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: 0;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 18px rgba(13,50,93,0.18);
+  transition: transform 140ms ease, box-shadow 140ms ease, opacity 120ms ease;
+}
+
+button:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13,50,93,0.22); }
+button:active{ transform: translateY(0); }
+
+button:focus{
+  outline: 3px solid rgba(45,108,181,0.16);
+  outline-offset: 2px;
+}
+
+.ghost{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* Home layout */
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px;
+}
+
+/* Modal */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal{
+  background: linear-gradient(180deg,#07182a 0%, #05121a 100%);
+  border-radius: 12px;
+  padding: 18px;
+  min-width: 300px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 10px 30px rgba(3,8,18,0.6);
+}
+
+label{
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+input[type=text]{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background-color: rgba(11,18,32,0.92);
+    color: #e6eef8;
+    margin-top: 6px;
+    transition: box-shadow 120ms ease, border-color 120ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 12px; /* normal spacing, no arrow area */
+}
+
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background-color: rgba(11,18,32,0.92);   /* dark background to match theme */
+    color: #e6eef8;                           /* readable text on dark bg */
+    margin-top: 6px;
+    transition: box-shadow 120ms ease, border-color 120ms ease;
+    -webkit-appearance: none; /* remove native arrow on many browsers */
+    -moz-appearance: none;
+    appearance: none;
+    /* lightweight custom arrow built with gradients */
+    background-image:
+        linear-gradient(45deg, transparent 50%, #e6eef8 50%),
+        linear-gradient(135deg, #e6eef8 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 36px; /* space for the arrow */
+}
+
+input[type=text]:focus, select:focus{
+  box-shadow: 0 8px 20px rgba(2,6,23,0.45);
+  border-color: rgba(0,174,142,0.18);
+  outline: none;
+}
+
+select option{
+    background-color: #0b1220;
+    color: #e6eef8;
+    padding: 6px 8px;
+}
+
+select option:hover,
+select option:checked {
+    background-color: rgba(45,108,181,0.12);
+    color: #e6eef8;
+}
+
+select::-ms-expand{display: none;}
+
+/* Week selection */
+.weeks{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.week-btn{
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.week-btn:hover{ transform: translateY(-2px); border-color: rgba(45,108,181,0.12); box-shadow: 0 8px 20px rgba(13,50,93,0.06); }
+
+.week-btn.locked{
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Games grid */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.game-card{
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255,255,255,0.02);
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.game-card-inner{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.game-icon{
+  width:52px;
+  height:52px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 22px rgba(2,6,23,0.28);
+  flex-shrink:0;
+}
+.game-info{ flex:1; min-width:0; }
+.game-title{ font-size:15px; line-height:1; }
+.game-card .meta{ font-size:12px; color:var(--muted); margin-top:6px; }
+
+/* Question card */
+.question-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:10px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.question-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.question-progress-text{ font-size:13px; color:var(--muted); font-weight:600; }
+.progress-wrap{ flex:1; margin-left:10px; }
+.progress-bar{ width:100%; height:8px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden; }
+.progress-bar > i{ display:block; height:100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width:0%; transition: width 360ms linear; }
+
+/* Option buttons (large, touch-friendly) */
+.option-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 14px;
+  min-width:0;
+  border-radius:10px;
+  border:0;
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.32);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+.option-btn:active{ transform: translateY(0); }
+.option-btn:disabled{ opacity:0.6; cursor:default; transform:none; box-shadow:none; }
+
+/* Choice grid to organize options */
+.choice-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* larger screens: show two-column choices */
+@media(min-width:520px){
+  .choice-grid{ grid-template-columns: repeat(2, 1fr); }
+  .game-icon{ width:60px; height:60px; font-size:30px; }
+  .game-title{ font-size:16px; }
+}
+
+/* swatch-style small button (for color/reflex) */
+.swatch-btn{
+  height:48px;
+  min-width:64px;
+  padding:0;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:14px;
+}
+
+/* ensure question body gets spacing for mobile */
+.question-body{ margin-top:8px; }
+
+/* small visual polish on game-card hover to echo icon color */
+.game-card.game-type-logic:hover .game-icon{ box-shadow: 0 12px 34px rgba(45,108,181,0.16); }
+.game-card.game-type-word:hover  .game-icon{ box-shadow: 0 12px 34px rgba(0,174,142,0.16); }
+.game-card.game-type-quiz:hover  .game-icon{ box-shadow: 0 12px 34px rgba(222,92,142,0.12); }
+
+/* ensure large option buttons are easy to tap on small screens */
+@media(max-width:420px){
+  .option-btn{ padding:14px 12px; font-size:16px; border-radius:12px; }
+  .choice-grid{ gap:8px; }
+}
+
+.game-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(2,6,23,0.55);
+  border-color: rgba(0,174,142,0.08);
+}
+
+.game-card .meta { color: var(--muted); }
+
+.game-card.disabled{
+  opacity: 0.45;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/* meta and small text */
+.meta{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Game area */
+.game-area{
+  margin-top: 12px;
+  position: relative;
+}
+
+.timer{
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--primary);
+  /* hidden by floating UI but left for accessibility */
+}
+
+.scoreline{
+  font-size: 14px;
+  margin-top: 6px;
+  color: #e6eef8;
+}
+
+/* Floating timer (top-right) - visible UI controlled by JS */
+#floatingTimer{
+  /* JS may set inline styles; these are fallbacks */
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(45,108,181,0.95), rgba(0,174,142,0.95));
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+  min-width: 72px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Toast container fallback */
+#toastContainer{
+  position: fixed;
+  top: 56px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10000;
+  max-width: 320px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* Toast style (JS also sets inline color) */
+.game-toast{
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(3,8,18,0.45);
+  font-family: Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  pointer-events: auto;
+  transform: translateX(18px);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+/* provide semantic variants when JS adds classes/types */
+.game-toast.success{ background: linear-gradient(90deg, var(--teal), #1fbf9c); }
+.game-toast.error  { background: linear-gradient(90deg, #ff6b6b, #e74c3c); }
+.game-toast.info   { background: linear-gradient(90deg, var(--primary), rgba(45,108,181,0.85)); }
+
+/* Footer */
+footer{
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Small responsive tweaks */
+@media(min-width: 760px){
+  h1{ font-size: 28px; }
+  .grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Accessibility/utility */
+.hidden { display: none !important; visibility: hidden !important; }
+
+/* Optional: subtle progress indicator highlight for question progress */
+.progress-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-bar > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  width: 0%;
+  transition: width 300ms linear;
+}
+
+/* Floating "Back to Top" button and small header tweaks */
+.top-btn{
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  min-width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 30px rgba(13,50,93,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  z-index: 11000;
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+  opacity: 0.96;
+}
+
+.top-btn:hover{ transform: translateY(-4px); box-shadow: 0 16px 40px rgba(13,50,93,0.28); }
+
+/* smaller appearance on very small screens */
+@media (max-width:420px) {
+  .top-btn { right: 12px; bottom: 12px; min-width:40px; height:40px; font-size:16px; }
+}
+
+/* Home button small tweak (ghost already exists) */
+#homeBtn {
+  margin-right: 8px;
+  padding: 8px 12px;
+  font-weight:700;
+}
+
+/* --- Improved Mobile Layout (≤520px only) --- */
+@media (max-width: 520px) {
+
+  /* Container spacing */
+  .container {
+    margin: 14px auto;
+    padding: 12px;
+  }
+
+  /* Center title and subheading for cleaner mobile view */
+  h1,
+  p.lead {
+    text-align: center;
+    width: 100%;
+  }
+
+  p.lead {
+    margin-top: 4px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* Header: stack neatly, center title and buttons */
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  header > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Buttons: align neatly, stretch if needed */
+  header button,
+  #completionArea button,
+  #completionArea #submitBtn,
+  #submitBtn,
+  #restartBtn,
+  #playBtn {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: 100%;
+    margin: 4px 0;
+  }
+
+  /* Ensure ghost buttons (like Home) don’t collapse too small */
+  .ghost {
+    min-width: 100px;
+  }
+
+  /* Weeks layout: center and space evenly */
+  .weeks {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Game grid: single column for vertical scrolling */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Game card adjustments */
+  .game-card {
+    padding: 14px;
+    min-height: auto;
+    text-align: center;
+  }
+
+  .game-card-inner {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .game-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  /* Bigger, easy-tap option buttons */
+  .option-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  /* Inputs and selects easier to tap */
+  input[type="text"],
+  select {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  /* Modal full width for mobile comfort */
+  .modal {
+    min-width: calc(100% - 32px);
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  /* Floating timer smaller and repositioned */
+  #floatingTimer {
+    top: 8px;
+    right: 8px;
+    padding: 6px 8px;
+    min-width: 56px;
+    font-size: 13px;
+  }
+
+  /* Toast container smaller and right-aligned */
+  #toastContainer {
+    right: 8px;
+    top: 56px;
+    max-width: 88%;
+    align-items: flex-end;
+  }
+
+  .game-toast {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  /* Back to top button smaller */
+  .top-btn {
+    right: 12px;
+    bottom: 12px;
+    min-width: 40px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  /* Question card spacing */
+  .question-card {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* Reduce hover animation on touch devices */
+  .card:hover,
+  .game-card:hover {
+    transform: none;
+    box-shadow: 0 6px 14px rgba(2, 6, 23, 0.36);
+  }
+
+  /* Slightly larger game title */
+  .game-title {
+    font-size: 16px;
+  }
+
+  /* Progress bar smaller */
+  .progress-bar {
+    height: 7px;
+  }
+}
+
+

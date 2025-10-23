@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> FitFluence180: Mind in Motion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div>
+          <h1>Mind of Marvels: Battle for Brilliance</h1>
+          <p class="lead">Only the fastest minds survive</p>
+        </div>
+        <div>
+          <button id ="homeBtn" class="ghost">Home</button>
+          <button id="playBtn">Play</button>
+          <button id="restartBtn" title= 'Start as a New Player' class="ghost">New Player</button>
+          <button id ="submitScoreBtn" class="ghost" title="End Game & Submit Score">End</button>
+        </div>
+      </header>
+    </div>
+
+    <!-- Welcome / Info Card -->
+    <div id="welcomeCard" class="card center" style="display:none">
+      <div id="welcomeText"></div>
+
+      <!-- Player current score shown above the week selection -->
+       <div style="margin-top:8px;text-align:center">
+        <div class="meta">Current Score</div>
+        <div style="margin-top:6px"><strong id="playerScore">0</strong></div>
+       </div>
+
+      <div style="margin-top:12px">
+        <div class="meta">Current Week:</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <div class="week-btn" id="week1Btn">Week 1</div>
+          <div class="week-btn locked" id="week2Btn">Week 2 (locked)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Games / Week Area -->
+    <div id="gamesCard" class="card" style="display:none">
+      <h2 id="gamesTitle">Week 1 Games</h2>
+      <div class="grid" id="gamesGrid"></div>
+
+      <div class="game-area" id="gameArea" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="timer" id="gameTimer">00:00</div>
+          <div class="scoreline" id="gameScoreLine">Score: 0</div>
+        </div>
+        <div id="gameContent" style="margin-top:12px"></div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+          <button class="ghost" id="endGameBtn">End</button>
+        </div>
+      </div>
+
+      <div id="completionArea" style="display:none;margin-top:12px;text-align:center">
+        <div class="meta">You completed all games for this week.</div>
+        <div style="margin-top:8px"><strong>Your Week Score: <span id="weekTotal">0</span></strong></div>
+        <div style="margin-top:12px"><button id="submitBtn">Submit Final Score</button></div>
+      </div>
+    </div>
+
+    <footer class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="meta">Results will be announced by QHSE</div>
+        <div class="meta">Developed by Ezzah</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal for name & house -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <h3>Enter your details.</h3>
+      <label for="playerName">Name</label>
+      <input type="text" id="playerName" placeholder="Your name" />
+      <label for="sportHouse">Sport House</label>
+      <select id="sportHouse">
+        <option value="Hulk">Hulk</option>
+        <option value="Captain America">Captain America</option>
+        <option value="Iron Man">Iron Man</option>
+        <option value="The Flash">The Flash</option>
+        <option value="Black Panther">Black Panther</option>
+        <option value="Thanos">Thanos</option>
+        <option value="Thor">Thor</option>
+      </select>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+        <button class="ghost" id="cancelModal">Cancel</button>
+        <button id="saveModal">Continue</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating Back to Top Button -->
+  <button id="backTopBtn" class="top-btn" aria-label="Back to Top" title="Back to Top" style="display:none">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>
